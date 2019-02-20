@@ -1,0 +1,26 @@
+version: "3"
+services:
+  %service_name%:
+    #### Add service specific setup here ####
+    # image:
+    # build:
+    # volumes:
+    ports:
+      - "%service_port%:%service_port%"
+
+  nginx-reverse-proxy:
+    image: "linuxserver/letsencrypt"
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=America/New_York
+      - URL=%domain%
+      - SUBDOMAINS=%subdom%
+      - VALIDATION=http
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx.conf:/config/nginx/site-confs/default"
+    links:
+      -%service_name%:%service_name%
