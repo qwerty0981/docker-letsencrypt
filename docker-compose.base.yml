@@ -14,7 +14,7 @@ services:
       - PUID=1001
       - PGID=1001
       - TZ=America/New_York
-      - URL=%domain%
+      - URL=%domain_name%
       - SUBDOMAINS=%subdom%
       - VALIDATION=http
     ports:
